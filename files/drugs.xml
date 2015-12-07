@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<Drugs xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+       xsi:noNamespaceSchemaLocation='drugs.xsd'>
+    <Medicine id="1">
+        <Name>Aspirin</Name>
+        <Pharm>Darnitsa</Pharm>
+        <DrugGroup>ANESTHETIC</DrugGroup>
+        <Analogs>
+            <Analog>Bufferin</Analog>
+            <Analog>Micristin</Analog>
+            <Analog>Colpharit</Analog>
+        </Analogs>
+        <DrugVersion>PILLS</DrugVersion>
+        <Certificate>
+            <Number>111222</Number>
+            <IssueDate>10.11.2012</IssueDate>
+            <ExpirationDate>12.12.2017</ExpirationDate>
+            <OrganisationName>EPAM Pharmacology</OrganisationName>
+        </Certificate>
+    </Medicine>
+
+    <Medicine id="2">
+        <Name>Ascorbic acid</Name>
+        <Pharm>Darnitsa</Pharm>
+        <DrugGroup>VITAMIN</DrugGroup>
+        <Analogs>
+        </Analogs>
+        <DrugVersion>PILLS</DrugVersion>
+        <Certificate>
+            <Number>111333</Number>
+            <IssueDate>20.11.2012</IssueDate>
+            <ExpirationDate>12.06.2017</ExpirationDate>
+            <OrganisationName>EPAM Pharmacology</OrganisationName>
+        </Certificate>
+    </Medicine>
+
+    <Medicine id="3">
+        <Name>Ciprofloxacinum</Name>
+        <Pharm>Darnitsa</Pharm>
+        <DrugGroup>ANTIBIOTIC</DrugGroup>
+        <Analogs>
+            <Analog>Recipro</Analog>
+            <Analog>Alcipro</Analog>
+            <Analog>Ciprolet</Analog>
+        </Analogs>
+        <DrugVersion>INJECTION</DrugVersion>
+        <Certificate>
+            <Number>111444</Number>
+            <IssueDate>25.07.2012</IssueDate>
+            <ExpirationDate>30.12.2017</ExpirationDate>
+            <OrganisationName>EPAM Pharmacology</OrganisationName>
+        </Certificate>
+    </Medicine>
+</Drugs>
