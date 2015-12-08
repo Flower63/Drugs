@@ -1,7 +1,9 @@
 package ua.epam.drugs.util;
 
 /**
- * Created by Dennis
+ * Catalogue of parser types
+ *
+ * @author Dennis
  *
  * on 12/6/2015.
  */

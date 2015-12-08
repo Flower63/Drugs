@@ -6,7 +6,9 @@ import ua.epam.drugs.util.DrugVersion;
 import java.util.Arrays;
 
 /**
- * Created by Dennis
+ * Medicine entity
+ *
+ * @author Dennis
  *
  * on 12/5/2015.
  */
@@ -18,9 +20,6 @@ public class Medicine {
     private String[] analogNames;
     private DrugVersion version;
     private Certificate certificate;
-
-    public Medicine() {
-    }
 
     public String getId() {
         return id;

@@ -1,7 +1,9 @@
 package ua.epam.drugs.util;
 
 /**
- * Created by Dennis
+ * Catalogue of drugs forms
+ *
+ * @author Dennis
  *
  * on 12/5/2015.
  */

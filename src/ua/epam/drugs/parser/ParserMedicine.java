@@ -11,11 +11,15 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Created by Dennis
+ * Common abstract class for my xml parsers
+ *
+ * @author Dennis
  *
  * on 12/6/2015.
  */
-public abstract class Parser {
+public abstract class ParserMedicine {
+
+    private final String xsdFilePath = "files/drugs.xsd";
 
     /**
      * Parsing input file
@@ -35,7 +39,7 @@ public abstract class Parser {
         try {
             SchemaFactory factory =
                     SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = factory.newSchema(new File("files/drugs.xsd"));
+            Schema schema = factory.newSchema(new File(xsdFilePath));
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(file));
         } catch (Exception e) {

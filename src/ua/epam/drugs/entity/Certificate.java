@@ -4,7 +4,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Created by Dennis on 12/5/2015.
+ * Certificate for drugs
+ *
+ * @author Dennis
+ *
+ * on 12/5/2015.
  */
 public class Certificate {
     private String certNumber;
@@ -18,9 +22,6 @@ public class Certificate {
      * Needed to parse and format dates to String
      */
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
-    public Certificate() {
-    }
 
     public String getCertNumber() {
         return certNumber;
