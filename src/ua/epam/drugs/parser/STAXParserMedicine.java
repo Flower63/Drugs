@@ -28,9 +28,7 @@ public class STAXParserMedicine extends ParserMedicine {
         /*
          * Validation
          */
-        if (!valid(file)) {
-            throw new IllegalArgumentException("Not valid file");
-        }
+        validate(file);
 
         /*
          * List of results
@@ -79,10 +77,10 @@ public class STAXParserMedicine extends ParserMedicine {
                  */
                 switch (event) {
                     case XMLStreamConstants.START_ELEMENT:
-                        if ("Medicine".equals(reader.getLocalName())) {
+                        if (MEDICINE.equals(reader.getLocalName())) {
                             medicine = new Medicine();
                             medicine.setId(reader.getAttributeValue(0));
-                        } else if ("Certificate".equals(reader.getLocalName())) {
+                        } else if (CERTIFICATE.equals(reader.getLocalName())) {
                             certificate = new Certificate();
                         }
                         break;
@@ -91,43 +89,43 @@ public class STAXParserMedicine extends ParserMedicine {
                         break;
                     case XMLStreamConstants.END_ELEMENT:
                         switch (reader.getLocalName()) {
-                            case "Medicine":
+                            case MEDICINE:
                                 result.add(medicine);
                                 medicine = new Medicine();
                                 break;
-                            case "Certificate":
+                            case CERTIFICATE:
                                 medicine.setCertificate(certificate);
                                 certificate = new Certificate();
                                 break;
-                            case "Analogs":
+                            case ANALOGS:
                                 medicine.setAnalogNames(analogs.toArray(new String[0]));
                                 analogs = new ArrayList<>();
                                 break;
-                            case "Analog":
+                            case ANALOG:
                                 analogs.add(content);
                                 break;
-                            case "Name":
+                            case NAME:
                                 medicine.setName(content);
                                 break;
-                            case "Pharm":
+                            case PHARM:
                                 medicine.setPharm(content);
                                 break;
-                            case "DrugGroup":
+                            case DRUG_GROUP:
                                 medicine.setGroup(DrugGroup.valueOf(content));
                                 break;
-                            case "DrugVersion":
+                            case DRUG_VERSION:
                                 medicine.setVersion(DrugVersion.valueOf(content));
                                 break;
-                            case "Number":
+                            case NUMBER:
                                 certificate.setCertNumber(content);
                                 break;
-                            case "IssueDate":
+                            case ISSUE_DATE:
                                 certificate.setIssueDate(content);
                                 break;
-                            case "ExpirationDate":
+                            case EXPIRATION_DATE:
                                 certificate.setExpirationDate(content);
                                 break;
-                            case "OrganisationName":
+                            case ORGANISATION_NAME:
                                 certificate.setOrganisationName(content);
                                 break;
                         }

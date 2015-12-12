@@ -19,7 +19,29 @@ import java.util.List;
  */
 public abstract class ParserMedicine {
 
+    /**
+     * Path to XSD file
+     */
     private final String xsdFilePath = "files/drugs.xsd";
+
+    /**
+     * Tags
+     */
+    static final String ID = "id";
+    static final String NAME = "Name";
+    static final String MEDICINE = "Medicine";
+    static final String CERTIFICATE = "Certificate";
+    static final String ANALOG = "Analog";
+    static final String ANALOGS = "Analogs";
+    static final String PHARM = "Pharm";
+    static final String DRUG_GROUP = "DrugGroup";
+    static final String DRUG_VERSION = "DrugVersion";
+    static final String NUMBER = "Number";
+    static final String ISSUE_DATE = "IssueDate";
+    static final String EXPIRATION_DATE = "ExpirationDate";
+    static final String ORGANISATION_NAME = "OrganisationName";
+
+
 
     /**
      * Parsing input file
@@ -33,9 +55,8 @@ public abstract class ParserMedicine {
      * Validate input file against representative xsd schema
      *
      * @param file File to validate
-     * @return Validation result
      */
-    protected boolean valid(File file) {
+    protected void validate(File file) {
         try {
             SchemaFactory factory =
                     SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -43,10 +64,7 @@ public abstract class ParserMedicine {
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(file));
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            throw new IllegalArgumentException("Not valid file");
         }
-
-        return true;
     }
 }

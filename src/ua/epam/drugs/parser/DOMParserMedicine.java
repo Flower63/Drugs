@@ -31,9 +31,7 @@ public class DOMParserMedicine extends ParserMedicine {
         /*
          * Validation
          */
-        if (!valid(file)) {
-            throw new IllegalArgumentException("Not valid file");
-        }
+        validate(file);
 
         try {
             /*
@@ -59,7 +57,7 @@ public class DOMParserMedicine extends ParserMedicine {
             /*
              * Getting list of nodes
              */
-            NodeList nodes = doc.getElementsByTagName("Medicine");
+            NodeList nodes = doc.getElementsByTagName(MEDICINE);
 
             /*
              * Iterating over nodes
@@ -92,13 +90,13 @@ public class DOMParserMedicine extends ParserMedicine {
         /*
          * Fill object fields
          */
-        medicine.setId(element.getAttribute("id"));
-        medicine.setName(element.getElementsByTagName("Name").item(0).getTextContent());
-        medicine.setPharm(element.getElementsByTagName("Pharm").item(0).getTextContent());
-        medicine.setGroup(DrugGroup.valueOf(element.getElementsByTagName("DrugGroup").item(0).getTextContent()));
-        medicine.setAnalogNames(getAnalogs((Element) element.getElementsByTagName("Analogs").item(0)));
-        medicine.setVersion(DrugVersion.valueOf(element.getElementsByTagName("DrugVersion").item(0).getTextContent()));
-        medicine.setCertificate(getCertificate((Element) element.getElementsByTagName("Certificate").item(0)));
+        medicine.setId(element.getAttribute(ID));
+        medicine.setName(element.getElementsByTagName(NAME).item(0).getTextContent());
+        medicine.setPharm(element.getElementsByTagName(PHARM).item(0).getTextContent());
+        medicine.setGroup(DrugGroup.valueOf(element.getElementsByTagName(DRUG_GROUP).item(0).getTextContent()));
+        medicine.setAnalogNames(getAnalogs((Element) element.getElementsByTagName(ANALOGS).item(0)));
+        medicine.setVersion(DrugVersion.valueOf(element.getElementsByTagName(DRUG_VERSION).item(0).getTextContent()));
+        medicine.setCertificate(getCertificate((Element) element.getElementsByTagName(CERTIFICATE).item(0)));
 
         return medicine;
     }
@@ -112,10 +110,10 @@ public class DOMParserMedicine extends ParserMedicine {
     private Certificate getCertificate(Element element) {
         Certificate certificate = new Certificate();
 
-        certificate.setCertNumber(element.getElementsByTagName("Number").item(0).getTextContent());
-        certificate.setIssueDate(element.getElementsByTagName("IssueDate").item(0).getTextContent());
-        certificate.setExpirationDate(element.getElementsByTagName("ExpirationDate").item(0).getTextContent());
-        certificate.setOrganisationName(element.getElementsByTagName("OrganisationName").item(0).getTextContent());
+        certificate.setCertNumber(element.getElementsByTagName(NUMBER).item(0).getTextContent());
+        certificate.setIssueDate(element.getElementsByTagName(ISSUE_DATE).item(0).getTextContent());
+        certificate.setExpirationDate(element.getElementsByTagName(EXPIRATION_DATE).item(0).getTextContent());
+        certificate.setOrganisationName(element.getElementsByTagName(ORGANISATION_NAME).item(0).getTextContent());
 
         return certificate;
     }
@@ -127,7 +125,7 @@ public class DOMParserMedicine extends ParserMedicine {
      * @return Array of analogs names
      */
     private String[] getAnalogs(Element element) {
-        NodeList nodes = element.getElementsByTagName("Analog");
+        NodeList nodes = element.getElementsByTagName(ANALOG);
         String[] analogs = new String[nodes.getLength()];
 
         for (int i = 0; i < nodes.getLength(); i++) {

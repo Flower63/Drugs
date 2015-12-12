@@ -31,9 +31,7 @@ public class SAXParserMedicine extends ParserMedicine {
     public List<Medicine> parse(File file) {
         result = new ArrayList<>();
 
-        if (!valid(file)) {
-            throw new IllegalArgumentException("Not valid file");
-        }
+        validate(file);
 
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -61,14 +59,14 @@ public class SAXParserMedicine extends ParserMedicine {
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
             switch (qName) {
-                case "Medicine":
+                case MEDICINE:
                     medicine = new Medicine();
-                    medicine.setId(attributes.getValue("id"));
+                    medicine.setId(attributes.getValue(ID));
                     break;
-                case "Certificate":
+                case CERTIFICATE:
                     certificate = new Certificate();
                     break;
-                case "Analogs":
+                case ANALOGS:
                     analogs = new ArrayList<>();
                     break;
             }
@@ -77,43 +75,43 @@ public class SAXParserMedicine extends ParserMedicine {
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
             switch (qName) {
-                case "Medicine":
+                case MEDICINE:
                     result.add(medicine);
                     medicine = null;
                     break;
-                case "Certificate":
+                case CERTIFICATE:
                     medicine.setCertificate(certificate);
                     certificate = null;
                     break;
-                case "Name":
+                case NAME:
                     medicine.setName(content);
                     break;
-                case "Pharm":
+                case PHARM:
                     medicine.setPharm(content);
                     break;
-                case "DrugGroup":
+                case DRUG_GROUP:
                     medicine.setGroup(DrugGroup.valueOf(content));
                     break;
-                case "DrugVersion":
+                case DRUG_VERSION:
                     medicine.setVersion(DrugVersion.valueOf(content));
                     break;
-                case "Analogs":
+                case ANALOGS:
                     medicine.setAnalogNames(analogs.toArray(new String[0]));
                     analogs = null;
                     break;
-                case "Analog":
+                case ANALOG:
                     analogs.add(content);
                     break;
-                case "Number":
+                case NUMBER:
                     certificate.setCertNumber(content);
                     break;
-                case "IssueDate":
+                case ISSUE_DATE:
                     certificate.setIssueDate(content);
                     break;
-                case "ExpirationDate":
+                case EXPIRATION_DATE:
                     certificate.setExpirationDate(content);
                     break;
-                case "OrganisationName":
+                case ORGANISATION_NAME:
                     certificate.setOrganisationName(content);
             }
         }
